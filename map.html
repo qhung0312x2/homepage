@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>닝광흥 홈페이지 - 위치</title>
+    <link rel="icon" type="image/x-icon" href="imgs/h.jpg">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/portfolio.css">
+</head>
+<body>
+    <div class="container">
+    
+        <header>
+            <div class="header-container">
+                <img src="imgs/h.jpg" alt="Logo" class="logo-img">
+                <span>닝광흥 홈페이지</span>
+            </div>
+        </header>
+
+        <nav>
+    <!-- Mục 1: 소개 -->
+    <div class="dropdown">
+        <a href="index.html" >소개</a>
+        <div class="dropdown-content">
+            <a href="intro-sub1.html">인사말</a>
+            <a href="intro-sub2.html">비전</a>
+        </div>
+    </div>
+
+    <!-- Mục 2: 인적 -->
+    <div class="dropdown">
+        <a href="personal.html">인적</a>
+        <div class="dropdown-content">
+            <a href="personal-sub1.html">기본 정보</a>
+            <a href="personal-sub2.html">학력 사항</a>
+        </div>
+    </div>
+
+    <!-- Mục 3: 학술 -->
+    <div class="dropdown">
+        <a href="academic.html">학술</a>
+        <div class="dropdown-content">
+            <a href="academic-sub1.html">논문</a>
+            <a href="academic-sub2.html">연구 프로젝트</a>
+        </div>
+    </div>
+
+    <!-- Mục 4: 경력 -->
+    <div class="dropdown">
+        <a href="career.html">경력</a>
+        <div class="dropdown-content">
+            <a href="career-sub1.html">회사 경력</a>
+            <a href="career-sub2.html">자격증</a>
+        </div>
+    </div>
+
+    <!-- Mục 5: 아이디어 -->
+    <div class="dropdown">
+        <a href="idea.html" >아이디어</a>
+        <div class="dropdown-content">
+            <a href="idea-sub1.html">프로젝트 제안</a>
+            <a href="idea-sub2.html">연구 노트</a>
+        </div>
+    </div>
+
+    <!-- Mục 6: 연락처 -->
+    <div class="dropdown">
+        <a href="SNS.html">연락처</a>
+        <div class="dropdown-content">
+            <a href="sns-sub1.html">이메일</a>
+            <a href="sns-sub2.html">SNS 링크</a>
+        </div>
+    </div>
+
+    <!-- Mục 7: 위치 -->
+    <div class="dropdown">
+        <a href="map.html" class="active">위치</a>
+        <div class="dropdown-content">
+            <a href="map-sub1.html">오시는 길</a>
+            <a href="map-sub2.html">캠퍼스 맵</a>
+        </div>
+    </div>
+
+    <!-- THANH TÌM KIẾM -->
+<div class="search-container">
+    <div class="search-box">
+        <input type="text" id="searchInput" placeholder="검색어를 입력하세요 (예: 소개, 학력, 논문)..." autocomplete="off">
+        <button id="searchBtn" type="button" aria-label="검색">
+            <!-- Icon Kính lúp SVG -->
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+        </button>
+    </div>
+    <!-- Khung hiển thị danh sách gợi ý khi gõ -->
+    <div id="searchSuggestions" class="search-suggestions"></div>
+</div>
+</nav>
+
+        <main>
+            <h1 class="section-title">위치</h1>
+            <ul class="info-list">
+                <li>위성좌표: <a href="https://map.naver.com" target="_blank">수원시</a></li>
+            </ul>
+
+            <!-- Khung chứa bản đồ Naver Map -->
+            <!-- Khung chứa bản đồ hiển thị ổn định 100% -->
+            <div class="map-container" style="margin-top: 25px; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d101409.77197170817!2d126.93674681643063!3d37.26357271954848!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357b431dcbb5ab35%3A0x23ee61248e89541d!2sSuwon-si%2C%20Gyeonggi-do%2C%20South%20Korea!5e0!3m2!1sko!2skr!4v1711000000000!5m2!1sko!2skr" 
+                    width="100%" 
+                    height="400" 
+                    style="border:0;" 
+                    allowfullscreen="" 
+                    loading="lazy" 
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+        </main>
+
+        <footer>Copyright © 2026 Hung, Ninh Quang Hung</footer>
+    </div>
+    <script src="js/music.js"></script>
+</body>
+</html>
