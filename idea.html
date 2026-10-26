@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>아이디어 & 댓글</title>
+    <link rel="icon" type="image/x-icon" href="imgs/h.jpg">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/portfolio.css">
+</head>
+<body>
+    <div class="container">
+    
+        <header>
+            <div class="header-container">
+                <img src="imgs/h.jpg" alt="Logo" class="logo-img">
+                <span>닝광흥 홈페이지</span>
+            </div>
+        </header>
+            <nav>
+    <!-- Mục 1: 소개 -->
+    <div class="dropdown">
+        <a href="index.html" >소개</a>
+        <div class="dropdown-content">
+            <a href="intro-sub1.html">인사말</a>
+            <a href="intro-sub2.html">비전</a>
+        </div>
+    </div>
+
+    <!-- Mục 2: 인적 -->
+    <div class="dropdown">
+        <a href="personal.html">인적</a>
+        <div class="dropdown-content">
+            <a href="personal-sub1.html">기본 정보</a>
+            <a href="personal-sub2.html">학력 사항</a>
+        </div>
+    </div>
+
+    <!-- Mục 3: 학술 -->
+    <div class="dropdown">
+        <a href="academic.html">학술</a>
+        <div class="dropdown-content">
+            <a href="academic-sub1.html">논문</a>
+            <a href="academic-sub2.html">연구 프로젝트</a>
+        </div>
+    </div>
+
+    <!-- Mục 4: 경력 -->
+    <div class="dropdown">
+        <a href="career.html">경력</a>
+        <div class="dropdown-content">
+            <a href="career-sub1.html">회사 경력</a>
+            <a href="career-sub2.html">자격증</a>
+        </div>
+    </div>
+
+    <!-- Mục 5: 아이디어 -->
+    <div class="dropdown">
+        <a href="idea.html" class="active">아이디어</a>
+        <div class="dropdown-content">
+            <a href="idea-sub1.html">프로젝트 제안</a>
+            <a href="idea-sub2.html">연구 노트</a>
+        </div>
+    </div>
+
+    <!-- Mục 6: 연락처 -->
+    <div class="dropdown">
+        <a href="SNS.html">연락처</a>
+        <div class="dropdown-content">
+            <a href="sns-sub1.html">이메일</a>
+            <a href="sns-sub2.html">SNS 링크</a>
+        </div>
+    </div>
+
+    <!-- Mục 7: 위치 -->
+    <div class="dropdown">
+        <a href="map.html">위치</a>
+        <div class="dropdown-content">
+            <a href="map-sub1.html">오시는 길</a>
+            <a href="map-sub2.html">캠퍼스 맵</a>
+        </div>
+    </div>
+
+    <!-- THANH TÌM KIẾM -->
+<div class="search-container">
+    <div class="search-box">
+        <input type="text" id="searchInput" placeholder="검색어를 입력하세요 (예: 소개, 학력, 논문)..." autocomplete="off">
+        <button id="searchBtn" type="button" aria-label="검색">
+            <!-- Icon Kính lúp SVG -->
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+        </button>
+    </div>
+    <!-- Khung hiển thị danh sách gợi ý khi gõ -->
+    <div id="searchSuggestions" class="search-suggestions"></div>
+</div>
+</nav>
+        <main>
+            <section class="idea-section">
+                <h2 class="section-title">아이디어 및 댓글</h2>
+
+                <form id="ideaForm" class="idea-form">
+                    <label for="ideaTitle">아이디어 제목</label>
+                    <input type="text" id="ideaTitle" placeholder="아이디어 제목을 입력하세요" required>
+
+                    <label for="ideaContent">아이디어 내용</label>
+                    <textarea id="ideaContent" rows="5" placeholder="당신의 아이디어를 설명해 주세요..." required></textarea>
+
+                    <button type="submit">아이디어 제출</button>
+                </form>
+
+                <div class="idea-list-box">
+                    <h3>아이디어 목록</h3>
+                    <ul id="ideaList" class="idea-list">
+                        <li>
+                            <strong>시간 관리 앱</strong>
+                            <p>학생들이 학습 계획을 세우고 마감일 알림 및 진행 상황을 추적할 수 있도록 돕습니다.</p>
+                        </li>
+                        <li>
+                            <strong>학습 자료 공유 웹사이트</strong>
+                            <p>사용자가 과목별로 학습 자료를 업로드, 검색하고 평가할 수 있습니다.</p>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="comment-box">
+                    <h3>아이디어에 대한 댓글</h3>
+
+                    <label for="commentIdea">아이디어 선택</label>
+                    <select id="commentIdea">
+                        <option value="0">시간 관리 앱</option>
+                        <option value="1">학습 자료 공유 웹사이트</option>
+                    </select>
+
+                    <label for="commentText">댓글</label>
+                    <textarea id="commentText" rows="4" placeholder="의견을 입력하세요..." required></textarea>
+
+                    <button type="button" id="commentBtn">댓글 등록</button>
+                </div>
+
+                <div class="comment-list-box">
+                    <h3>최근 댓글</h3>
+                    <ul id="commentList" class="comment-list">
+                        <li><strong>민우:</strong> 아이디어가 매우 현실적이고 학생들에게 적합합니다.</li>
+                        <li><strong>라나:</strong> 알림 기능이 추가되면 더 유용할 것 같습니다.</li>
+                    </ul>
+                </div>
+            </section>
+        </main>
+
+        <footer>Copyright © 2026 Hung, Ninh Quang Hung</footer>
+    </div>
+
+    <script src="js/music.js"></script>
+    <script>
+        const ideaForm = document.getElementById('ideaForm');
+        const ideaList = document.getElementById('ideaList');
+        const commentText = document.getElementById('commentText');
+        const commentBtn = document.getElementById('commentBtn');
+        const commentList = document.getElementById('commentList');
+        const commentIdea = document.getElementById('commentIdea');
+
+        ideaForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const title = document.getElementById('ideaTitle').value.trim();
+            const content = document.getElementById('ideaContent').value.trim();
+
+            if (!title || !content) return;
+
+            const li = document.createElement('li');
+            li.innerHTML = `<strong>${title}</strong><p>${content}</p>`;
+            ideaList.prepend(li);
+
+            const option = document.createElement('option');
+            option.value = ideaList.children.length - 1;
+            option.textContent = title;
+            commentIdea.add(option);
+
+            ideaForm.reset();
+        });
+
+        commentBtn.addEventListener('click', function () {
+            const message = commentText.value.trim();
+            if (!message) return;
+
+            const li = document.createElement('li');
+            const ideaName = commentIdea.options[commentIdea.selectedIndex].text;
+            li.innerHTML = `<strong>당신:</strong> <strong>${ideaName}</strong>에 대해 댓글: ${message}`;
+            commentList.prepend(li);
+            commentText.value = '';
+        });
+    </script>
+</body>
+</html>
