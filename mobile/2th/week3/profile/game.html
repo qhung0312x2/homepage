@@ -1,0 +1,1041 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>닝광흥 홈페이지 - 미니게임 (틱택토)</title>
+    <link rel="icon" type="image/x-icon" href="imgs/h.jpg">
+    <!-- Google Font: Inter & Noto Sans KR -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            header: '#2b5722',
+                            green: '#215b16',
+                            badge: '#93b954',
+                            purple: '#5b2874',
+                            purpleHover: '#3d1750',
+                            bg: '#f0f0f0',
+                            card: '#f8f8f8',
+                            border: '#cbd5e1'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Malgun Gothic', 'Noto Sans KR', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Malgun Gothic', 'Noto Sans KR', sans-serif;
+            background-color: #f0f0f0;
+            color: #333;
+            font-size: 13px;
+            min-height: 100vh;
+        }
+
+        .main-container {
+            width: 100%;
+            max-width: 100%;
+            margin: 0;
+            background-color: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* HEADER */
+        header {
+            background-color: #2b5722;
+            color: #ffffff;
+            padding: 15px 20px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        header .header-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        header .logo-img {
+            width: 38px;
+            height: 38px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 2px solid rgba(255, 255, 255, 0.8);
+        }
+
+        /* NAVIGATION */
+        nav {
+            background: transparent !important;
+            display: flex !important;
+            justify-content: center !important;
+            align-items: center !important;
+            padding: 10px 0 !important;
+            gap: 10px !important;
+            margin: 15px auto 5px auto !important;
+            width: fit-content !important;
+            box-shadow: none !important;
+            flex-wrap: wrap !important;
+        }
+
+        .dropdown {
+            position: relative !important;
+            display: inline-block !important;
+        }
+
+        nav .dropdown > a {
+            color: #0f172a !important;
+            background-color: #ffffff !important;
+            text-decoration: none !important;
+            padding: 8px 18px !important;
+            font-size: 13px !important;
+            font-weight: 700 !important;
+            display: block !important;
+            border-radius: 50px !important;
+            overflow: hidden !important;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+            transition: all 0.2s ease !important;
+            border: 1px solid #e2e8f0;
+        }
+
+        nav .dropdown > a:hover, 
+        nav .dropdown > a.active {
+            background-color: #215b16 !important;
+            color: #ffffff !important;
+            box-shadow: 0 4px 12px rgba(33, 91, 22, 0.3) !important;
+            border-color: #215b16 !important;
+        }
+
+        .dropdown-content {
+            display: none !important;
+            position: absolute !important;
+            top: 100% !important;
+            left: 0 !important;
+            background-color: #ffffff !important;
+            min-width: 160px !important;
+            box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.15) !important;
+            border-radius: 10px !important;
+            z-index: 999 !important;
+            overflow: hidden !important;
+            border: 1px solid #cbd5e1 !important;
+            margin-top: 0px !important;
+        }
+
+        .dropdown-content a {
+            color: #1e293b !important;
+            text-decoration: none !important;
+            display: block !important;
+            padding: 10px 16px !important;
+            font-size: 12px !important;
+            font-weight: 600 !important;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f1f5f9 !important;
+            color: #215b16 !important;
+            padding-left: 20px !important;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block !important;
+        }
+
+        /* SEARCH BAR */
+        .search-container {
+            position: relative;
+            width: fit-content;
+            margin: 5px auto 15px auto;
+        }
+
+        .search-box {
+            display: flex;
+            align-items: center;
+            background-color: #ffffff;
+            border-radius: 50px;
+            padding: 4px 6px 4px 18px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            border: 1px solid #cbd5e1;
+            transition: all 0.2s ease;
+            width: 360px;
+            max-width: 90vw;
+        }
+
+        .search-box:focus-within {
+            border-color: #215b16;
+            box-shadow: 0 4px 12px rgba(33, 91, 22, 0.2);
+        }
+
+        .search-box input {
+            border: none;
+            outline: none;
+            background: transparent;
+            font-size: 13px;
+            color: #0f172a;
+            width: 100%;
+        }
+
+        .search-box button {
+            background-color: #215b16;
+            color: #ffffff;
+            border: none;
+            border-radius: 50px;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+            flex-shrink: 0;
+        }
+
+        /* SECTION TITLE */
+        .section-title {
+            background-color: #93b954;
+            color: #222;
+            padding: 4px 12px;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 15px;
+            border-radius: 3px;
+            font-size: 14px;
+        }
+
+        /* CARDS & PANELS */
+        .site-card {
+            background-color: #f8f8f8;
+            border: 1px solid #d8d8d8;
+            border-radius: 8px;
+            padding: 16px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+        }
+
+        /* GAME CELL BUTTONS */
+        .cell-btn {
+            aspect-ratio: 1 / 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            background: #ffffff;
+            border: 1px solid #cbd5e1;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            user-select: none;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        .cell-btn:hover:not(:disabled) {
+            background: #f1f5f9;
+            border-color: #215b16;
+            transform: scale(1.02);
+        }
+
+        .cell-btn.winning-cell {
+            background-color: #eaf3db !important;
+            border-color: #215b16 !important;
+            box-shadow: 0 0 12px rgba(33, 91, 22, 0.4) !important;
+            animation: pulse-winning 1.2s infinite alternate;
+        }
+
+        @keyframes pulse-winning {
+            from { background-color: #eaf3db; }
+            to { background-color: #cce3a3; }
+        }
+
+        /* ACTION BUTTONS */
+        .btn-theme-green {
+            background-color: #215b16;
+            color: #ffffff;
+            transition: all 0.2s ease;
+        }
+        .btn-theme-green:hover {
+            background-color: #2b5722;
+            box-shadow: 0 3px 8px rgba(33, 91, 22, 0.3);
+        }
+
+        .btn-theme-purple {
+            background-color: #5b2874;
+            color: #ffffff;
+            transition: all 0.2s ease;
+        }
+        .btn-theme-purple:hover {
+            background-color: #3d1750;
+            box-shadow: 0 3px 8px rgba(91, 40, 116, 0.3);
+        }
+
+        .option-btn {
+            border: 1px solid #cbd5e1;
+            background-color: #ffffff;
+            color: #333333;
+            transition: all 0.2s ease;
+        }
+
+        .option-btn:hover {
+            border-color: #215b16;
+            color: #215b16;
+        }
+
+        .option-btn.active {
+            background-color: #215b16;
+            color: #ffffff;
+            border-color: #215b16;
+            box-shadow: 0 2px 6px rgba(33, 91, 22, 0.25);
+        }
+
+        /* FOOTER */
+        footer {
+            background-color: #2b5722;
+            color: #ffffff;
+            text-align: center;
+            padding: 12px;
+            font-size: 11px;
+            margin-top: auto;
+        }
+
+        /* MUSIC PLAYER FIXED WIDGET */
+        .music-player {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background-color: #1a1f2c;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            transition: width 0.35s cubic-bezier(0.4, 0, 0.2, 1), border-radius 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 9999;
+            overflow: hidden;
+        }
+
+        .music-player button {
+            position: absolute;
+            top: 50%;
+            left: 25px;
+            transform: translate(-50%, -50%);
+            background-color: #a3e635;
+            color: #0f172a;
+            border: none;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.2s ease;
+            z-index: 2;
+        }
+
+        .music-player button:hover {
+            transform: translate(-50%, -50%) scale(1.08);
+        }
+
+        .music-player-copy {
+            position: absolute;
+            left: 54px;
+            top: 50%;
+            transform: translateY(-50%);
+            opacity: 0;
+            visibility: hidden;
+            white-space: nowrap;
+            transition: opacity 0.25s ease, visibility 0.25s ease;
+            z-index: 1;
+        }
+
+        .music-player:hover {
+            width: 175px;
+            border-radius: 25px;
+        }
+
+        .music-player:hover .music-player-copy {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .music-player-title {
+            display: block;
+            font-size: 12px;
+            font-weight: bold;
+            color: #ffffff;
+        }
+
+        .music-player-status {
+            display: block;
+            font-size: 10px;
+            color: #94a3b8;
+        }
+    </style>
+</head>
+<body class="bg-[#f0f0f0]">
+
+    <div class="main-container">
+        
+        <!-- HEADER -->
+        <header>
+            <div class="header-container max-w-7xl mx-auto">
+                <img src="imgs/h.jpg" alt="Logo" class="logo-img" onerror="this.src='https://placehold.co/100x100/2b5722/ffffff?text=NH'">
+                <span>닝광흥 홈페이지</span>
+            </div>
+        </header>
+
+        <!-- MENU NAVIGATION -->
+        <nav>
+            <div class="dropdown">
+                <a href="index.html">소개</a>
+            </div>
+            <div class="dropdown">
+                <a href="personal.html">인적</a>
+            </div>
+            <div class="dropdown">
+                <a href="academic.html">학술</a>
+            </div>
+            <div class="dropdown">
+                <a href="career.html">경력</a>
+            </div>
+            <div class="dropdown">
+                <a href="idea.html" class="active">미니게임</a>
+            </div>
+            <div class="dropdown">
+                <a href="SNS.html">연락처</a>
+            </div>
+            <div class="dropdown">
+                <a href="map.html">위치</a>
+            </div>
+        </nav>
+
+        <!-- SEARCH BAR -->
+        <div class="search-container">
+            <div class="search-box">
+                <input type="text" placeholder="검색어를 입력하세요...">
+                <button type="button">🔍</button>
+            </div>
+        </div>
+
+        <!-- MAIN CONTENT CONTAINER -->
+        <main class="w-full max-w-6xl mx-auto px-4 py-4 flex-grow">
+            
+            <div class="mb-4">
+                <h1 class="section-title">미니 게임 (Tic-Tac-Toe)</h1>
+                <p class="text-xs text-slate-600">인공지능(AI) 대결 또는 2인 플레이 모드로 틱택토 게임을 즐기실 수 있습니다.</p>
+            </div>
+
+            <!-- GAME SECTION GRID LAYOUT -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+                
+                <!-- LEFT PANEL: SETTINGS & SCORES (5 COLS) -->
+                <div class="lg:col-span-5 flex flex-col gap-5">
+                    
+                    <!-- SCOREBOARD CARD -->
+                    <div class="site-card">
+                        <div class="flex items-center justify-between mb-3 border-b border-slate-200 pb-2">
+                            <h2 class="font-bold text-slate-800 text-sm flex items-center gap-2">
+                                <span>📊 전적 스코어보드</span>
+                            </h2>
+                            <button id="soundToggleBtn" class="px-2 py-1 rounded bg-slate-200 text-slate-700 hover:bg-slate-300 text-xs transition" title="음향 온/오프">
+                                🔊 Sound On
+                            </button>
+                        </div>
+                        
+                        <div class="grid grid-cols-4 gap-2 text-center">
+                            <div class="bg-white p-2.5 rounded-md border border-slate-200 shadow-sm">
+                                <span class="block text-[11px] text-slate-500 mb-0.5">승리 (X)</span>
+                                <span id="scoreWin" class="text-lg font-bold text-[#215b16]">0</span>
+                            </div>
+                            <div class="bg-white p-2.5 rounded-md border border-slate-200 shadow-sm">
+                                <span class="block text-[11px] text-slate-500 mb-0.5">패배 (O)</span>
+                                <span id="scoreLoss" class="text-lg font-bold text-[#5b2874]">0</span>
+                            </div>
+                            <div class="bg-white p-2.5 rounded-md border border-slate-200 shadow-sm">
+                                <span class="block text-[11px] text-slate-500 mb-0.5">무승부</span>
+                                <span id="scoreDraw" class="text-lg font-bold text-amber-600">0</span>
+                            </div>
+                            <div class="bg-white p-2.5 rounded-md border border-slate-200 shadow-sm">
+                                <span class="block text-[11px] text-slate-500 mb-0.5">연승</span>
+                                <span id="scoreStreak" class="text-lg font-bold text-blue-600">0</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CONTROL OPTIONS CARD -->
+                    <div class="site-card flex flex-col gap-4">
+                        
+                        <!-- MODE SELECT -->
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 mb-2">대진 모드 선택</label>
+                            <div class="grid grid-cols-2 gap-2">
+                                <button id="modeAiBtn" class="option-btn active py-2 px-3 rounded-full text-xs font-bold flex items-center justify-center gap-1.5">
+                                    🤖 AI 대결
+                                </button>
+                                <button id="modePvpBtn" class="option-btn py-2 px-3 rounded-full text-xs font-bold flex items-center justify-center gap-1.5">
+                                    👥 2인 플레이
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- AI DIFFICULTY -->
+                        <div id="difficultyContainer">
+                            <label class="block text-xs font-bold text-slate-700 mb-2">AI 난이도 설정</label>
+                            <div class="grid grid-cols-3 gap-2">
+                                <button data-diff="easy" class="diff-btn option-btn py-1.5 px-2 rounded-full text-xs font-medium">쉬움</button>
+                                <button data-diff="medium" class="diff-btn option-btn py-1.5 px-2 rounded-full text-xs font-medium">보통</button>
+                                <button data-diff="hard" class="diff-btn option-btn active py-1.5 px-2 rounded-full text-xs font-medium">최고 난이도</button>
+                            </div>
+                        </div>
+
+                        <!-- BOARD SIZE SELECT -->
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 mb-2">보드 크기</label>
+                            <div class="grid grid-cols-2 gap-2">
+                                <button data-size="3" class="size-btn option-btn active py-1.5 px-3 rounded-full text-xs font-medium">3 x 3 (클래식)</button>
+                                <button data-size="5" class="size-btn option-btn py-1.5 px-3 rounded-full text-xs font-medium">5 x 5 (4목 승리)</button>
+                            </div>
+                        </div>
+
+                        <!-- RESTART & RESET BUTTONS -->
+                        <div class="pt-2 flex gap-2 border-t border-slate-200">
+                            <button id="restartBtn" class="flex-1 py-2.5 px-4 rounded-full font-bold text-xs btn-theme-green shadow-sm active:scale-95 flex items-center justify-center gap-1.5">
+                                <span>🔄 게임 다시 시작</span>
+                            </button>
+                            <button id="resetScoreBtn" class="py-2.5 px-4 rounded-full font-bold text-xs btn-theme-purple active:scale-95">
+                                점수 초기화
+                            </button>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- RIGHT PANEL: GAME BOARD & STATUS (7 COLS) -->
+                <div class="lg:col-span-7 flex flex-col gap-4">
+                    
+                    <!-- GAME STATUS BANNER -->
+                    <div class="site-card flex items-center justify-between py-3">
+                        <div class="flex items-center gap-2.5">
+                            <span id="statusBadge" class="w-3 h-3 rounded-full bg-[#215b16] animate-pulse"></span>
+                            <span id="statusText" class="font-bold text-sm text-slate-800">당신의 차례입니다 (X)</span>
+                        </div>
+                        <div id="thinkingIndicator" class="hidden text-xs text-[#215b16] font-bold animate-pulse flex items-center gap-1.5">
+                            <svg class="animate-spin h-4 w-4 text-[#215b16]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                            </svg>
+                            <span>AI가 계산 중입니다...</span>
+                        </div>
+                    </div>
+
+                    <!-- PLAYING BOARD CARD -->
+                    <div class="site-card min-h-[380px] flex flex-col items-center justify-center relative overflow-hidden bg-white">
+                        
+                        <div id="boardContainer" class="w-full max-w-[360px] sm:max-w-[400px] grid gap-2.5 transition-all duration-300 my-auto">
+                            <!-- Cells generated by JS -->
+                        </div>
+
+                        <!-- RESULT OVERLAY MODAL -->
+                        <div id="resultOverlay" class="hidden absolute inset-0 bg-slate-900/70 backdrop-blur-sm flex flex-col items-center justify-center p-6 text-center z-20 transition-all duration-300">
+                            <div id="resultIcon" class="text-5xl mb-2 animate-bounce">🏆</div>
+                            <h3 id="resultTitle" class="text-xl font-bold text-white mb-1">당신의 승리!</h3>
+                            <p id="resultDesc" class="text-xs text-slate-200 mb-5 max-w-xs">뛰어난 전략으로 대국에서 승리하셨습니다.</p>
+                            <button id="overlayPlayBtn" class="py-2.5 px-6 rounded-full font-bold text-xs btn-theme-purple active:scale-95 shadow-md">
+                                다음 한 판 더!
+                            </button>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </main>
+
+        <!-- FOOTER -->
+        <footer>
+            Copyright © 2026 Hung, Ninh Quang Hung. All Rights Reserved.
+        </footer>
+
+        <!-- MUSIC PLAYER WIDGET -->
+        <div class="music-player" id="musicPlayerWidget">
+            <button id="musicToggleBtn" type="button">🎵</button>
+            <div class="music-player-copy">
+                <span class="music-player-title">배경 음악</span>
+                <span class="music-player-status" id="musicStatusText">재생 중지됨</span>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- AUDIO SYNTHESIZER & GAME LOGIC -->
+    <script>
+        (() => {
+            // Web Audio API Sound Effects
+            let audioCtx = null;
+            let soundEnabled = true;
+
+            function initAudio() {
+                if (!audioCtx) {
+                    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                }
+            }
+
+            function playSound(type) {
+                if (!soundEnabled) return;
+                initAudio();
+                if (!audioCtx) return;
+
+                const now = audioCtx.currentTime;
+
+                if (type === 'moveX') {
+                    const osc = audioCtx.createOscillator();
+                    const gain = audioCtx.createGain();
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(440, now);
+                    osc.frequency.exponentialRampToValueAtTime(700, now + 0.08);
+                    gain.gain.setValueAtTime(0.12, now);
+                    gain.gain.linearRampToValueAtTime(0.01, now + 0.08);
+                    osc.connect(gain);
+                    gain.connect(audioCtx.destination);
+                    osc.start(now);
+                    osc.stop(now + 0.08);
+                } else if (type === 'moveO') {
+                    const osc = audioCtx.createOscillator();
+                    const gain = audioCtx.createGain();
+                    osc.type = 'triangle';
+                    osc.frequency.setValueAtTime(320, now);
+                    osc.frequency.exponentialRampToValueAtTime(200, now + 0.08);
+                    gain.gain.setValueAtTime(0.15, now);
+                    gain.gain.linearRampToValueAtTime(0.01, now + 0.08);
+                    osc.connect(gain);
+                    gain.connect(audioCtx.destination);
+                    osc.start(now);
+                    osc.stop(now + 0.08);
+                } else if (type === 'win') {
+                    [523.25, 659.25, 783.99, 1046.50].forEach((freq, i) => {
+                        const osc = audioCtx.createOscillator();
+                        const gain = audioCtx.createGain();
+                        osc.type = 'sine';
+                        osc.frequency.setValueAtTime(freq, now + i * 0.1);
+                        gain.gain.setValueAtTime(0.15, now + i * 0.1);
+                        gain.gain.linearRampToValueAtTime(0.01, now + i * 0.1 + 0.22);
+                        osc.connect(gain);
+                        gain.connect(audioCtx.destination);
+                        osc.start(now + i * 0.1);
+                        osc.stop(now + i * 0.1 + 0.22);
+                    });
+                } else if (type === 'loss') {
+                    [280, 240, 200, 160].forEach((freq, i) => {
+                        const osc = audioCtx.createOscillator();
+                        const gain = audioCtx.createGain();
+                        osc.type = 'sawtooth';
+                        osc.frequency.setValueAtTime(freq, now + i * 0.12);
+                        gain.gain.setValueAtTime(0.1, now + i * 0.12);
+                        gain.gain.linearRampToValueAtTime(0.01, now + i * 0.12 + 0.18);
+                        osc.connect(gain);
+                        gain.connect(audioCtx.destination);
+                        osc.start(now + i * 0.12);
+                        osc.stop(now + i * 0.12 + 0.18);
+                    });
+                } else if (type === 'draw') {
+                    const osc = audioCtx.createOscillator();
+                    const gain = audioCtx.createGain();
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(380, now);
+                    osc.frequency.setValueAtTime(330, now + 0.1);
+                    gain.gain.setValueAtTime(0.12, now);
+                    gain.gain.linearRampToValueAtTime(0.01, now + 0.25);
+                    osc.connect(gain);
+                    gain.connect(audioCtx.destination);
+                    osc.start(now);
+                    osc.stop(now + 0.25);
+                }
+            }
+
+            // Game Logic
+            let boardSize = 3;
+            let winLineLen = 3;
+            let board = [];
+            let isGameActive = true;
+            let currentPlayer = 'X';
+            let gameMode = 'ai';
+            let aiDifficulty = 'hard';
+
+            let scores = { win: 0, loss: 0, draw: 0, streak: 0 };
+
+            // DOM Elements
+            const boardContainer = document.getElementById('boardContainer');
+            const statusText = document.getElementById('statusText');
+            const statusBadge = document.getElementById('statusBadge');
+            const thinkingIndicator = document.getElementById('thinkingIndicator');
+            const resultOverlay = document.getElementById('resultOverlay');
+            const resultIcon = document.getElementById('resultIcon');
+            const resultTitle = document.getElementById('resultTitle');
+            const resultDesc = document.getElementById('resultDesc');
+            const overlayPlayBtn = document.getElementById('overlayPlayBtn');
+            const restartBtn = document.getElementById('restartBtn');
+            const resetScoreBtn = document.getElementById('resetScoreBtn');
+            const soundToggleBtn = document.getElementById('soundToggleBtn');
+
+            const modeAiBtn = document.getElementById('modeAiBtn');
+            const modePvpBtn = document.getElementById('modePvpBtn');
+            const difficultyContainer = document.getElementById('difficultyContainer');
+
+            const scoreWin = document.getElementById('scoreWin');
+            const scoreLoss = document.getElementById('scoreLoss');
+            const scoreDraw = document.getElementById('scoreDraw');
+            const scoreStreak = document.getElementById('scoreStreak');
+
+            function initGame() {
+                winLineLen = boardSize === 3 ? 3 : 4;
+                board = Array(boardSize * boardSize).fill('');
+                isGameActive = true;
+                currentPlayer = 'X';
+
+                renderBoard();
+                updateStatusText();
+                resultOverlay.classList.add('hidden');
+                thinkingIndicator.classList.add('hidden');
+            }
+
+            function renderBoard() {
+                boardContainer.innerHTML = '';
+                boardContainer.style.gridTemplateColumns = `repeat(${boardSize}, minmax(0, 1fr))`;
+
+                board.forEach((cell, index) => {
+                    const btn = document.createElement('button');
+                    btn.className = `cell-btn text-2xl sm:text-3xl font-black ${cell === 'X' ? 'text-[#215b16]' : 'text-[#5b2874]'}`;
+                    btn.dataset.index = index;
+
+                    if (cell === 'X') {
+                        btn.innerHTML = `✕`;
+                    } else if (cell === 'O') {
+                        btn.innerHTML = `◯`;
+                    } else {
+                        btn.innerHTML = '';
+                    }
+
+                    btn.addEventListener('click', () => handleCellClick(index));
+                    boardContainer.appendChild(btn);
+                });
+            }
+
+            function handleCellClick(index) {
+                if (board[index] !== '' || !isGameActive) return;
+
+                makeMove(index, currentPlayer);
+
+                if (isGameActive && gameMode === 'ai' && currentPlayer === 'O') {
+                    triggerAiTurn();
+                }
+            }
+
+            function makeMove(index, player) {
+                board[index] = player;
+                playSound(player === 'X' ? 'moveX' : 'moveO');
+                renderBoard();
+
+                const winData = checkWin(board, boardSize, winLineLen);
+
+                if (winData) {
+                    endGame(winData);
+                } else if (board.every(c => c !== '')) {
+                    endGame({ winner: 'draw' });
+                } else {
+                    currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+                    updateStatusText();
+                }
+            }
+
+            function triggerAiTurn() {
+                isGameActive = false;
+                thinkingIndicator.classList.remove('hidden');
+
+                setTimeout(() => {
+                    const aiIndex = getBestAiMove();
+                    thinkingIndicator.classList.add('hidden');
+                    isGameActive = true;
+                    if (aiIndex !== null && aiIndex !== undefined) {
+                        makeMove(aiIndex, 'O');
+                    }
+                }, 380);
+            }
+
+            function getBestAiMove() {
+                const emptyIndices = board.map((v, i) => v === '' ? i : null).filter(v => v !== null);
+                if (emptyIndices.length === 0) return null;
+
+                if (aiDifficulty === 'easy') {
+                    return emptyIndices[Math.floor(Math.random() * emptyIndices.length)];
+                }
+
+                if (aiDifficulty === 'medium') {
+                    for (let idx of emptyIndices) {
+                        let tempBoard = [...board];
+                        tempBoard[idx] = 'O';
+                        if (checkWin(tempBoard, boardSize, winLineLen)) return idx;
+                    }
+                    for (let idx of emptyIndices) {
+                        let tempBoard = [...board];
+                        tempBoard[idx] = 'X';
+                        if (checkWin(tempBoard, boardSize, winLineLen)) return idx;
+                    }
+                    return emptyIndices[Math.floor(Math.random() * emptyIndices.length)];
+                }
+
+                if (boardSize === 3) {
+                    let bestScore = -Infinity;
+                    let move = null;
+                    for (let idx of emptyIndices) {
+                        board[idx] = 'O';
+                        let score = minimax(board, 0, false, -Infinity, Infinity);
+                        board[idx] = '';
+                        if (score > bestScore) {
+                            bestScore = score;
+                            move = idx;
+                        }
+                    }
+                    return move;
+                } else {
+                    for (let idx of emptyIndices) {
+                        let tempBoard = [...board];
+                        tempBoard[idx] = 'O';
+                        if (checkWin(tempBoard, boardSize, winLineLen)) return idx;
+                    }
+                    for (let idx of emptyIndices) {
+                        let tempBoard = [...board];
+                        tempBoard[idx] = 'X';
+                        if (checkWin(tempBoard, boardSize, winLineLen)) return idx;
+                    }
+                    const centerOrder = [12, 7, 8, 11, 13, 16, 17, 18, 6, 14, 2, 10, 22, 4];
+                    for (let idx of centerOrder) {
+                        if (board[idx] === '') return idx;
+                    }
+                    return emptyIndices[Math.floor(Math.random() * emptyIndices.length)];
+                }
+            }
+
+            function minimax(boardState, depth, isMaximizing, alpha, beta) {
+                const winData = checkWin(boardState, 3, 3);
+                if (winData) {
+                    if (winData.winner === 'O') return 10 - depth;
+                    if (winData.winner === 'X') return depth - 10;
+                }
+                if (boardState.every(c => c !== '')) return 0;
+                if (depth >= 6) return 0;
+
+                const emptyIndices = boardState.map((v, i) => v === '' ? i : null).filter(v => v !== null);
+
+                if (isMaximizing) {
+                    let maxEval = -Infinity;
+                    for (let idx of emptyIndices) {
+                        boardState[idx] = 'O';
+                        let evaluation = minimax(boardState, depth + 1, false, alpha, beta);
+                        boardState[idx] = '';
+                        maxEval = Math.max(maxEval, evaluation);
+                        alpha = Math.max(alpha, evaluation);
+                        if (beta <= alpha) break;
+                    }
+                    return maxEval;
+                } else {
+                    let minEval = Infinity;
+                    for (let idx of emptyIndices) {
+                        boardState[idx] = 'X';
+                        let evaluation = minimax(boardState, depth + 1, true, alpha, beta);
+                        boardState[idx] = '';
+                        minEval = Math.min(minEval, evaluation);
+                        beta = Math.min(beta, evaluation);
+                        if (beta <= alpha) break;
+                    }
+                    return minEval;
+                }
+            }
+
+            function checkWin(b, size, len) {
+                const checkDirection = (row, col, dr, dc, player) => {
+                    let line = [];
+                    for (let i = 0; i < len; i++) {
+                        let r = row + dr * i;
+                        let c = col + dc * i;
+                        if (r < 0 || r >= size || c < 0 || c >= size) return null;
+                        let idx = r * size + c;
+                        if (b[idx] !== player) return null;
+                        line.push(idx);
+                    }
+                    return line;
+                };
+
+                for (let r = 0; r < size; r++) {
+                    for (let c = 0; c < size; c++) {
+                        let idx = r * size + c;
+                        let player = b[idx];
+                        if (!player) continue;
+
+                        let directions = [
+                            [0, 1],
+                            [1, 0],
+                            [1, 1],
+                            [1, -1]
+                        ];
+
+                        for (let [dr, dc] of directions) {
+                            let line = checkDirection(r, c, dr, dc, player);
+                            if (line) return { winner: player, line };
+                        }
+                    }
+                }
+                return null;
+            }
+
+            function endGame(winData) {
+                isGameActive = false;
+
+                if (winData.winner === 'X') {
+                    scores.win++;
+                    scores.streak++;
+                    playSound('win');
+                    highlightWinningLine(winData.line);
+                    showOverlay('🏆 당신의 승리!', '뛰어난 전략으로 대국에서 승리하셨습니다.', 'X');
+                } else if (winData.winner === 'O') {
+                    scores.loss++;
+                    scores.streak = 0;
+                    playSound('loss');
+                    highlightWinningLine(winData.line);
+                    showOverlay(gameMode === 'ai' ? '🤖 AI의 승리!' : '🎉 O의 승리!', '다음 판에 다시 도전해 보세요.', 'O');
+                } else {
+                    scores.draw++;
+                    playSound('draw');
+                    showOverlay('🤝 무승부!', '팽팽한 접전 끝에 비겼습니다.', 'draw');
+                }
+
+                updateScoreboard();
+            }
+
+            function highlightWinningLine(line) {
+                if (!line) return;
+                const cells = boardContainer.children;
+                line.forEach(idx => {
+                    if (cells[idx]) cells[idx].classList.add('winning-cell');
+                });
+            }
+
+            function showOverlay(title, desc, winner) {
+                setTimeout(() => {
+                    resultTitle.textContent = title;
+                    resultDesc.textContent = desc;
+
+                    if (winner === 'X') {
+                        resultIcon.textContent = '🏆';
+                    } else if (winner === 'O') {
+                        resultIcon.textContent = gameMode === 'ai' ? '🤖' : '🎉';
+                    } else {
+                        resultIcon.textContent = '🤝';
+                    }
+
+                    resultOverlay.classList.remove('hidden');
+                }, 350);
+            }
+
+            function updateStatusText() {
+                if (gameMode === 'ai') {
+                    if (currentPlayer === 'X') {
+                        statusText.textContent = '당신의 차례입니다 (X)';
+                        statusBadge.className = 'w-3 h-3 rounded-full bg-[#215b16] animate-pulse';
+                    } else {
+                        statusText.textContent = 'AI가 수 계산 중 (O)';
+                        statusBadge.className = 'w-3 h-3 rounded-full bg-[#5b2874] animate-pulse';
+                    }
+                } else {
+                    statusText.textContent = `플레이어 ${currentPlayer}의 차례입니다`;
+                    statusBadge.className = `w-3 h-3 rounded-full ${currentPlayer === 'X' ? 'bg-[#215b16]' : 'bg-[#5b2874]'} animate-pulse`;
+                }
+            }
+
+            function updateScoreboard() {
+                scoreWin.textContent = scores.win;
+                scoreLoss.textContent = scores.loss;
+                scoreDraw.textContent = scores.draw;
+                scoreStreak.textContent = scores.streak;
+            }
+
+            // Event Listeners
+            restartBtn.addEventListener('click', () => {
+                initAudio();
+                initGame();
+            });
+
+            overlayPlayBtn.addEventListener('click', () => {
+                initGame();
+            });
+
+            resetScoreBtn.addEventListener('click', () => {
+                scores = { win: 0, loss: 0, draw: 0, streak: 0 };
+                updateScoreboard();
+            });
+
+            soundToggleBtn.addEventListener('click', () => {
+                soundEnabled = !soundEnabled;
+                soundToggleBtn.textContent = soundEnabled ? '🔊 Sound On' : '🔇 Sound Off';
+            });
+
+            modeAiBtn.addEventListener('click', () => {
+                gameMode = 'ai';
+                modeAiBtn.classList.add('active');
+                modePvpBtn.classList.remove('active');
+                difficultyContainer.classList.remove('hidden');
+                initGame();
+            });
+
+            modePvpBtn.addEventListener('click', () => {
+                gameMode = 'pvp';
+                modePvpBtn.classList.add('active');
+                modeAiBtn.classList.remove('active');
+                difficultyContainer.classList.add('hidden');
+                initGame();
+            });
+
+            document.querySelectorAll('.diff-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    document.querySelectorAll('.diff-btn').forEach(b => b.classList.remove('active'));
+                    e.target.classList.add('active');
+                    aiDifficulty = e.target.dataset.diff;
+                    initGame();
+                });
+            });
+
+            document.querySelectorAll('.size-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    document.querySelectorAll('.size-btn').forEach(b => b.classList.remove('active'));
+                    e.target.classList.add('active');
+                    boardSize = parseInt(e.target.dataset.size);
+                    initGame();
+                });
+            });
+
+            window.onload = () => {
+                initGame();
+            };
+        })();
+    </script>
+    <script src="js/music.js"></script>
+</body>
+</html>
