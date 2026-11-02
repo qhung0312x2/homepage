@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f7fb">
+  <title>Lotto 6/45 — Chọn số và quay thưởng</title>
+  <link rel="stylesheet" href="css/lotto.css">
+  <script src="js/lotto.js" defer></script>
+</head>
+<body>
+  <main class="page">
+    <header class="topbar">
+      <a class="brand" href="lotto.html" aria-label="Lotto 6/45, trang chủ">
+        <span class="brand-mark" aria-hidden="true">L</span>
+        <span>lotto<span class="brand-light">.lab</span></span>
+      </a>
+      <span class="topbar-note"><span class="status-dot"></span> Trò chơi xổ số 6/45</span>
+    </header>
+
+    <section class="hero" aria-labelledby="page-title">
+      <span class="eyebrow">LOTTERY NUMBER GENERATOR</span>
+      <h1 id="page-title">Chọn số của bạn,<br><span>thử vận may hôm nay.</span></h1>
+      <p>Chọn 6 số yêu thích hoặc để máy chọn giúp bạn,<br class="desktop-break"> sau đó bắt đầu quay để xem kết quả.</p>
+    </section>
+
+    <section class="generator-card" aria-labelledby="game-title">
+      <div class="card-heading">
+        <div>
+          <span class="section-label">LOTTO 6/45</span>
+          <h2 id="game-title">Vé số của bạn</h2>
+        </div>
+        <div class="draw-counter" aria-live="polite">
+          <span class="counter-icon" aria-hidden="true">↻</span>
+          <span>Lượt quay <strong id="draw-count">0</strong></span>
+        </div>
+      </div>
+
+      <section class="pick-section" aria-labelledby="pick-title">
+        <div class="section-row">
+          <div class="step-heading">
+            <span class="step-number">1</span>
+            <div>
+              <h3 id="pick-title">Chọn 6 số</h3>
+              <p>Chạm vào các số bên dưới hoặc chọn ngẫu nhiên.</p>
+            </div>
+          </div>
+          <button id="random-pick-button" class="button button-small" type="button">
+            <span aria-hidden="true">✦</span> Chọn ngẫu nhiên
+          </button>
+        </div>
+
+        <div id="number-picker" class="number-picker" role="group" aria-label="Chọn số từ 1 đến 45"></div>
+        <p id="pick-message" class="pick-message" aria-live="polite">Đã chọn <strong id="pick-count">0</strong>/6 số.</p>
+
+        <div class="ticket-row">
+          <span class="ticket-label">SỐ BẠN CHỌN</span>
+          <div id="selected-numbers" class="number-row" aria-label="Vé số đã chọn"></div>
+        </div>
+      </section>
+
+      <div class="card-divider"></div>
+
+      <section class="draw-section" aria-labelledby="draw-title">
+        <div class="section-row draw-title-row">
+          <div class="step-heading">
+            <span class="step-number step-number-draw">2</span>
+            <div>
+              <h3 id="draw-title">Quay số</h3>
+              <p>Kết quả được tạo độc lập với vé của bạn.</p>
+            </div>
+          </div>
+          <span class="draw-badge"><span class="status-dot"></span> 6 số · 1–45</span>
+        </div>
+
+        <div id="draw-results" class="number-row draw-results" aria-live="polite" aria-label="Kết quả quay số"></div>
+        <p id="result-message" class="result-message" role="status">Chọn đủ 6 số để bắt đầu quay.</p>
+
+        <div class="actions">
+          <button id="draw-button" class="button button-primary" type="button" disabled>
+            <span aria-hidden="true">◉</span> Bắt đầu quay số
+          </button>
+          <button id="reset-button" class="button button-secondary" type="button">
+            <span aria-hidden="true">↺</span> Ván mới
+          </button>
+        </div>
+      </section>
+
+      <p class="card-footnote"><span aria-hidden="true">ⓘ</span> Chỉ để giải trí. Mỗi lượt quay gồm 6 số khác nhau.</p>
+    </section>
+
+    <section class="stats-card" aria-labelledby="stats-title">
+      <div class="stats-heading">
+        <div>
+          <span class="section-label">TỔNG QUAN CÁC LƯỢT QUAY</span>
+          <h2 id="stats-title">Thống kê của bạn</h2>
+          <p>Số lần trùng được tính sau mỗi lượt quay hoàn tất.</p>
+        </div>
+        <button id="clear-stats-button" class="button button-secondary button-small" type="button">Xóa thống kê</button>
+      </div>
+
+      <div class="stats-grid" aria-label="Số lần trùng theo số lượng">
+        <div class="stat-item"><span>Không trùng</span><strong id="match-count-0">0</strong><small>0 số</small></div>
+        <div class="stat-item"><span>Trùng</span><strong id="match-count-1">0</strong><small>1 số</small></div>
+        <div class="stat-item"><span>Trùng</span><strong id="match-count-2">0</strong><small>2 số</small></div>
+        <div class="stat-item"><span>Trùng</span><strong id="match-count-3">0</strong><small>3 số</small></div>
+        <div class="stat-item"><span>Trùng</span><strong id="match-count-4">0</strong><small>4 số</small></div>
+        <div class="stat-item"><span>Trùng</span><strong id="match-count-5">0</strong><small>5 số</small></div>
+        <div class="stat-item stat-item-perfect"><span>Đúng cả 6</span><strong id="match-count-6">0</strong><small>6 số</small></div>
+      </div>
+
+      <div class="history-heading">
+        <h3>Lịch sử kết quả</h3>
+        <span id="history-total" class="history-total">0 lượt</span>
+      </div>
+      <div class="history-table-wrap">
+        <table class="history-table">
+          <thead>
+            <tr>
+              <th scope="col">Lượt</th>
+              <th scope="col">Số đã chọn</th>
+              <th scope="col">Kết quả quay</th>
+              <th scope="col">Trùng</th>
+            </tr>
+          </thead>
+          <tbody id="history-body">
+            <tr><td class="history-empty" colspan="4">Chưa có lượt quay nào.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p id="stats-message" class="stats-message" role="status" aria-live="polite"></p>
+    </section>
+
+    <footer class="footer">
+      <span>Chúc bạn may mắn · Chơi có trách nhiệm</span>
+      <span class="range-note">01 <span></span> 45</span>
+    </footer>
+  </main>
+</body>
+</html>

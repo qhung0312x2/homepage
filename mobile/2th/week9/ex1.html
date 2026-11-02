@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bảng cửu chương</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 32px 16px;
+      font-family: Arial, sans-serif;
+      color: #1f2937;
+      background: #f3f6fb;
+    }
+
+    main {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      text-align: center;
+      color: #1d4ed8;
+      margin-bottom: 24px;
+    }
+
+    form {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+
+    input,
+    button {
+      padding: 10px 12px;
+      font: inherit;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+    }
+
+    button {
+      color: #fff;
+      background: #2563eb;
+      border-color: #2563eb;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #1d4ed8;
+    }
+
+    #message {
+      min-height: 1.5em;
+      text-align: center;
+      color: #b91c1c;
+    }
+
+    .tables {
+      display: grid;
+      grid-template-columns: minmax(180px, 320px);
+      justify-content: center;
+      gap: 16px;
+    }
+
+    section {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 14px #00000012;
+      padding: 16px;
+    }
+
+    h2 {
+      margin: 0 0 8px;
+      color: #1d4ed8;
+      text-align: center;
+    }
+
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
+
+    li {
+      padding: 6px;
+      border-bottom: 1px solid #e5e7eb;
+    }
+
+    li:last-child {
+      border-bottom: 0;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Bảng cửu chương</h1>
+    <form id="table-form">
+      <label for="number">Nhập số cần xem:</label>
+      <input id="number" name="number" type="number" step="1" required>
+      <button type="submit">Hiện bảng</button>
+    </form>
+    <p id="message" role="status" aria-live="polite"></p>
+    <div class="tables" id="tables"></div>
+  </main>
+  <script>
+    const tables = document.getElementById("tables");
+    const form = document.getElementById("table-form");
+    const numberInput = document.getElementById("number");
+    const message = document.getElementById("message");
+
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+      const number = Number(numberInput.value);
+      tables.replaceChildren();
+      message.textContent = "";
+
+      if (!Number.isSafeInteger(number)) {
+        message.textContent = "Vui lòng nhập một số nguyên hợp lệ.";
+        return;
+      }
+
+      const section = document.createElement("section");
+      const heading = document.createElement("h2");
+      const list = document.createElement("ul");
+
+      heading.textContent = `Bảng ${number}`;
+      section.appendChild(heading);
+
+      for (let multiplier = 1; multiplier <= 10; multiplier++) {
+        const line = document.createElement("li");
+        line.textContent = `${number} × ${multiplier} = ${number * multiplier}`;
+        list.appendChild(line);
+      }
+
+      section.appendChild(list);
+      tables.appendChild(section);
+    });
+  </script>
+</body>
+</html>
