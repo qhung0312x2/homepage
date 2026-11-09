@@ -1,0 +1,12 @@
+body { margin: 0; min-height: 100vh; display: grid; place-items: center; background: linear-gradient(135deg, #0f172a, #1d4ed8 55%, #38bdf8); font-family: Arial, sans-serif; } /* Tạo nền chuyển màu cho trang máy tính. */
+    main { width: min(320px, calc(100% - 32px)); padding: 20px; border: 1px solid #ffffff80; border-radius: 16px; background: linear-gradient(#ffffffbd, #ffffffbd), url("../img_4.jpg") center / cover; box-shadow: 0 16px 40px #02061755; } /* Dùng ảnh mèo làm nền và phủ lớp sáng để dễ nhìn nút. */
+    h1 { margin: 0 0 16px; text-align: center; color: #1e293b; } /* Căn giữa tiêu đề. */
+    #display { box-sizing: border-box; width: 100%; margin-bottom: 12px; padding: 14px; border: 1px solid #cbd5e1; border-radius: 8px; background: #f8fafc; color: #0f172a; font-size: 28px; text-align: right; } /* Hiển thị số đang tính. */
+    #keypad { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; } /* Sắp xếp các nút thành lưới. */
+    button { min-height: 54px; border: 0; border-radius: 8px; background: #e2e8f0; color: #0f172a; font-size: 20px; cursor: pointer; } /* Tạo kiểu chung cho nút. */
+    button:hover { background: #cbd5e1; } /* Làm nút đổi màu khi di chuột. */
+    button.operator, button.equals { background: #2563eb; color: #fff; } /* Làm nổi bật phép tính và nút bằng. */
+    button.operator:hover, button.equals:hover { background: #1d4ed8; } /* Đổi màu nút chức năng khi di chuột. */
+    button.clear { grid-column: span 2; background: #dc2626; color: #fff; } /* Làm nút xóa rộng hơn. */
+    button.clear:hover { background: #b91c1c; } /* Đổi màu nút xóa khi di chuột. */
+    button.zero { grid-column: span 2; } /* Làm nút số 0 rộng hơn. */

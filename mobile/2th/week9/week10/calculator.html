@@ -1,0 +1,36 @@
+<!DOCTYPE html> <!-- Khai báo tài liệu HTML5. -->
+<html lang="vi"> <!-- Đặt ngôn ngữ trang là tiếng Việt. -->
+<head> <!-- Bắt đầu phần thông tin trang. -->
+  <meta charset="UTF-8"> <!-- Hỗ trợ hiển thị tiếng Việt. -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Hiển thị tốt trên điện thoại. -->
+  <title>Máy tính</title> <!-- Đặt tiêu đề trang. -->
+  <link rel="stylesheet" href="css/calculator.css"> <!-- Nạp tệp giao diện máy tính từ thư mục css. -->
+  <script src="js/calculator.js" defer></script> <!-- Nạp mã JavaScript máy tính sau khi phân tích HTML. -->
+  
+</head> <!-- Kết thúc phần thông tin trang. -->
+<body> <!-- Bắt đầu nội dung trang. -->
+  <main> <!-- Chứa toàn bộ máy tính. -->
+    <h1>Máy tính</h1> <!-- Hiển thị tiêu đề máy tính. -->
+    <input id="display" type="text" value="0" aria-label="Màn hình máy tính" readonly> <!-- Hiển thị kết quả và không cho nhập trực tiếp. -->
+    <div id="keypad"> <!-- Chứa các nút số và phép tính. -->
+      <button type="button" class="clear" data-action="clear">CLEAR</button><!-- Xóa phép tính hiện tại. -->
+      <button type="button" class="operator" data-operator="/">÷</button><!-- Chọn phép chia. -->
+      <button type="button" class="operator" data-operator="*">×</button><!-- Chọn phép nhân. -->
+      <button type="button" data-digit="7">7</button><!-- Nhập số 7. -->
+      <button type="button" data-digit="8">8</button><!-- Nhập số 8. -->
+      <button type="button" data-digit="9">9</button><!-- Nhập số 9. -->
+      <button type="button" class="operator" data-operator="-">−</button><!-- Chọn phép trừ. -->
+      <button type="button" data-digit="4">4</button><!-- Nhập số 4. -->
+      <button type="button" data-digit="5">5</button><!-- Nhập số 5. -->
+      <button type="button" data-digit="6">6</button><!-- Nhập số 6. -->
+      <button type="button" class="operator" data-operator="+">+</button><!-- Chọn phép cộng. -->
+      <button type="button" data-digit="1">1</button><!-- Nhập số 1. -->
+      <button type="button" data-digit="2">2</button><!-- Nhập số 2. -->
+      <button type="button" data-digit="3">3</button><!-- Nhập số 3. -->
+      <button type="button" class="equals" data-action="calculate">=</button><!-- Tính và hiển thị kết quả. -->
+      <button type="button" class="zero" data-digit="0">0</button><!-- Nhập số 0. -->
+    </div> <!-- Kết thúc danh sách nút. -->
+  </main> <!-- Kết thúc máy tính. -->
+  
+</body> <!-- Kết thúc nội dung trang. -->
+</html> <!-- Kết thúc tài liệu HTML. -->
